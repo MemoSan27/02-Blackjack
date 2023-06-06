@@ -6,14 +6,14 @@
  */
 
 let deck             = [];
-const tipos          = ['C', 'D', 'H', 'S'];
-const especiales     = ['A', 'J', 'Q', 'K'];
+const tipos          = ['C', 'D', 'H', 'S'];  // se especifica tipos de cartas (corazones, diamantes, etc)
+const especiales     = ['A', 'J', 'Q', 'K'];  // es para las cartas especiales que no son numeros
 
 //Esta funcion crea un nuevo deck
 
-const crearDeck = () =>{
+const crearDeck = () => {
 
-    for(let i = 2; i <= 10; i++){
+    for(let i = 2; i <= 10; i++){  // recorre las cartas numericas
         for(let tipo of tipos){
             deck.push( i + tipo);
 
@@ -21,15 +21,15 @@ const crearDeck = () =>{
         
     }
 
-    for(let tipo of tipos){
+    for(let tipo of tipos){  // recorre las cartas especiales
         for(let especial of especiales){
             deck.push( especial + tipo)
         }
     }
 
     //console.log( deck );
-    deck = _.shuffle( deck );
-    console.log(deck);
+    deck = _.shuffle( deck );  // libreria que ordena el arreglo de cartas al azar
+    console.log(deck);   
     return deck;
 
 }
@@ -43,16 +43,21 @@ crearDeck();
 const pedirCarta = () => {
 
     if( deck.length === 0){
-        throw 'No hay cartas en el Deck';
+        throw 'No hay cartas en el Deck';  // simple validacion
     }
 
-    const carta = deck.pop();
-
-    
-    console.log( deck );
-    console.log( carta );
+    const carta = deck.pop();   // removemos la ultima carta del arreglo de cartas
     return carta;
 }
 
 //deck = [];
-pedirCarta();
+//pedirCarta();
+
+const valorCarta = ( carta ) => {  //Con esta funcion sacamos el valor numerico de la carta para poder sumar las cartas
+    const valor = carta.substring(0, carta.length-1);  // metodo substring() presenta los strings cortados, se olvida que el ultimo string existe y lo presenta
+    return( isNaN( valor )) ? // isNan es uan funcion que sirve para determinar si un valor es una letra (isNotANumber)
+    ( valor === 'A') ? 11 : 10 // si el valor es un AS
+    : valor * 1;  // si el valor es un numero, se multiplica por 1 para que sea numerico y no se transforme en string
+
+}
+
