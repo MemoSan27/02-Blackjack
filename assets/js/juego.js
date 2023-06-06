@@ -71,8 +71,14 @@ const valorCarta = ( carta ) => {  //Con esta funcion sacamos el valor numerico 
 
 }
 
+//Turno de la computadora
+
+
+
 //Eventos
 btnPedir.addEventListener('click', () => {
+    
+    //Actualizo los puntos del jugador en pantalla
     const carta = pedirCarta();
     
     puntosJugador = puntosJugador + valorCarta( carta );
@@ -80,12 +86,22 @@ btnPedir.addEventListener('click', () => {
 
     console.log( puntosJugador );
 
-    //<img class="carta" src="assets/cartas/2C.png"></img>
+    //Presento la carta al dar click al boton Pedir Carta
     const imgCarta = document.createElement('img');
     imgCarta.src = `assets/cartas/${ carta }.png`; // 3H, JD, AS, etc.
     imgCarta.classList.add('carta');
-
     divCartasJugador.append( imgCarta );
+
+    //Condicion para checar si el jugador ya tiene mas de 21 puntos
+
+    if ( puntosJugador > 21){
+        console.warn('Lo siento mucho, perdiste');
+        btnPedir.disabled = true;
+
+    }else if(puntosJugador === 21){
+        console.warn('21, Genial');
+        btnPedir.disabled = true;
+    }
     
 });
 
