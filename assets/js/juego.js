@@ -14,6 +14,8 @@ let puntosJugador = 0,
 
 //Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');  //Seleccionamos el boton pedir dentro del DOM
+
+const divCartasJugador = document.querySelector('#jugador-cartas');
 const puntosHTML = document.querySelectorAll('small');   //Seleccionamos todos los elementos small (puntaje) 
 
 
@@ -78,5 +80,12 @@ btnPedir.addEventListener('click', () => {
 
     console.log( puntosJugador );
 
+    //<img class="carta" src="assets/cartas/2C.png"></img>
+    const imgCarta = document.createElement('img');
+    imgCarta.src = `assets/cartas/${ carta }.png`; // 3H, JD, AS, etc.
+    imgCarta.classList.add('carta');
+
+    divCartasJugador.append( imgCarta );
     
 });
+
