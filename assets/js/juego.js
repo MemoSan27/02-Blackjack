@@ -184,7 +184,7 @@ btnDetener.addEventListener('click', () => {
         btnPedir.disabled = true;
         btnDetener.disabled = true;
 
-        turnoComputadora( puntosJugadores );
+        turnoComputadora( puntosJugadores[0] );
         
 
 });
