@@ -9,6 +9,14 @@ let deck             = [];
 const tipos          = ['C', 'D', 'H', 'S'];  // se especifica tipos de cartas (corazones, diamantes, etc)
 const especiales     = ['A', 'J', 'Q', 'K'];  // es para las cartas especiales que no son numeros
 
+let puntosJugador = 0,
+    puntosComputadora = 0;
+
+//Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');  //Seleccionamos el boton pedir dentro del DOM
+const puntosHTML = document.querySelectorAll('small');   //Seleccionamos todos los elementos small (puntaje) 
+
+
 //Esta funcion crea un nuevo deck
 
 const crearDeck = () => {
@@ -61,3 +69,14 @@ const valorCarta = ( carta ) => {  //Con esta funcion sacamos el valor numerico 
 
 }
 
+//Eventos
+btnPedir.addEventListener('click', () => {
+    const carta = pedirCarta();
+    
+    puntosJugador = puntosJugador + valorCarta( carta );
+    puntosHTML[0].innerText = puntosJugador;
+
+    console.log( puntosJugador );
+
+    
+});
